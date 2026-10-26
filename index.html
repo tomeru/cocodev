@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CoCoDev</title>
+<meta name="description" content="The Computation, Cognition, and Development Lab at Harvard.">
+<meta property="og:title" content="CoCoDev">
+<meta property="og:description" content="The Computation, Cognition, and Development Lab at Harvard.">
+<link rel="icon" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,600;0,700;1,400&family=Fraunces:opsz,wght,SOFT,WONK@9..144,100..900,0..100,0..1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="./"><img src="images/logo.png" alt="" onerror="this.remove()"><span>CoCoDev</span></a>
+    <nav class="site-nav" aria-label="Main">
+<a href="./" aria-current="page">About</a>
+<a href="people/">People</a>
+<a href="publications/">Publications</a>
+<a href="join-us/">Join Us</a>
+<a href="lab-photos/">Lab Photos</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+
+<section class="hero">
+  <div class="hero-text">
+    <p class="eyebrow">Harvard University · Department of Psychology</p>
+    <h1><span class="hl hl-pink">Co</span>mputation, <span class="hl hl-teal">Co</span>gnition, and <span class="hl hl-yellow">Dev</span>elopment Lab</h1>
+    <p class="lede">We investigate the common-sense knowledge people have about the world, where it comes from, and how it develops throughout childhood.</p>
+  </div>
+  <svg class="hero-art" viewBox="0 0 300 290" aria-hidden="true">
+    <rect class="sq sq-pink" x="105" y="10" width="135" height="135" rx="16"/>
+    <rect class="sq sq-teal" x="20" y="90" width="135" height="135" rx="16"/>
+    <rect class="sq sq-yellow" x="135" y="140" width="135" height="135" rx="16"/>
+    <g class="edges"><line x1="172" y1="77" x2="88" y2="157"/><line x1="172" y1="77" x2="202" y2="207"/><line x1="88" y1="157" x2="202" y2="207"/></g>
+    <circle class="node n1" cx="172" cy="77" r="10"/><circle class="node n2" cx="88" cy="157" r="10"/><circle class="node n3" cx="202" cy="207" r="10"/>
+  </svg>
+</section>
+
+<aside class="notice">
+  <strong>Now recruiting:</strong> Professor Ullman is looking to review postdoc applications for the Summer/Fall 2026 cycle. Learn more on our <a href="join-us/">Join Us</a> page.
+</aside>
+
+<section class="prose">
+  <p>The Computation, Cognition, and Development Lab is at the center of cognitive science, developmental psychology, and artificial intelligence. We investigate the common-sense knowledge people have about the world, where it comes from, and how it develops throughout childhood.</p>
+  <p>To do this, we use a combination of behavioral, developmental, and computational methods to pursue these topics.</p>
+  <p>Our guiding metaphor is that of program induction, and the mind as learning, generating, and running different probabilistic programs. Seen through this lens, our question becomes: what is the initial start-up library of useful programs that children (and other intelligent agents) might use to reliably learn and reason about the world around them?</p>
+
+  <h2>A Note To All</h2>
+  <p>The Computation, Cognition, and Development Lab values diversity of all kinds. We strive to provide enriching opportunities for all trainees, including those from marginalized and historically disadvantaged backgrounds. We are committed to increasing the representation of trainees from diverse backgrounds and ensuring that our field represents the values, perspectives, and experiences of a wider range of students and trainees. As such, we welcome and encourage applications from trainees who identify as members of marginalized or historically disadvantaged groups and work to provide a training environment that supports the needs of all students. We are committed to fostering a safe and supportive community in which all members are able to contribute fully regardless of age, gender, race, ethnicity, national origin, religion, gender identity and expression, sexual orientation, disability, or any other applicable basis.</p>
+  <p>We expect all of our members to behave in ways that promote the supportive and productive exchange of ideas, treating all individuals equitably and with respect.</p>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div><strong>Contact</strong><br><a href="mailto:cocodev@g.harvard.edu">cocodev@g.harvard.edu</a></div>
+    <div><strong>Join CoCoDev</strong><br>See the <a href="join-us/">Join Us</a> page for open positions.</div>
+    <div><strong>Follow us</strong><br><a href="https://bsky.app/profile/tomerullman.bsky.social">Bluesky</a></div>
+  </div>
+  <div class="wrap fine">Computation, Cognition, and Development Lab · Harvard University</div>
+</footer>
+<script>
+/* Local preview only: when opened from disk (file://), point folder links at their index.html.
+   Has no effect on the live site. */
+if (location.protocol === 'file:') {
+  document.querySelectorAll('a[href]').forEach(function (a) {
+    var h = a.getAttribute('href');
+    if (/^[a-z]+:/i.test(h) || h.charAt(0) === '#') return;
+    var parts = h.split('#');
+    if (parts[0] === '' ) return;
+    if (/\/$/.test(parts[0]) || parts[0] === '.' || parts[0] === '..') {
+      parts[0] = parts[0].replace(/\/?$/, '/') + 'index.html';
+      a.setAttribute('href', parts.join('#'));
+    }
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sort images</title>
+<style>
+  :root { --pink:#f2395a; --teal:#08acbd; --yellow:#fdd94f; --ink:#1c2a35; --muted:#586874; --line:#e6e9ec; }
+  body { margin:0; background:#fdfcf8; color:var(--ink); font:15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .wrap { max-width:1100px; margin:0 auto; padding:24px 16px 60px; }
+  h1 { margin:0 0 4px; } h2 { margin:32px 0 4px; }
+  .hint { color:var(--muted); margin:0 0 12px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:14px; }
+  .card[hidden] { display:none; }
+  .card { background:#fff; border:2px solid var(--line); border-radius:12px; padding:8px; }
+  .card.set { border-color:var(--teal); }
+  .card.dup { border-color:var(--pink); }
+  .card img { width:100%; aspect-ratio:1; object-fit:cover; border-radius:8px; background:#eee; }
+  .num { font-weight:700; font-size:13px; color:var(--muted); margin:6px 0 4px; }
+  select { width:100%; font:inherit; padding:4px; }
+  .bar { position:sticky; bottom:0; background:#fff; border-top:4px solid var(--yellow); padding:14px 16px; box-shadow:0 -6px 20px rgba(0,0,0,.08); }
+  .bar .wrap { padding:0; display:flex; flex-direction:column; gap:8px; }
+  textarea { width:100%; height:110px; font:12px/1.4 ui-monospace, Menlo, monospace; }
+  button { font:inherit; font-weight:700; padding:8px 16px; border:0; border-radius:999px; background:var(--teal); color:#fff; cursor:pointer; align-self:flex-start; }
+  .status { font-size:13px; color:var(--muted); }
+  .empty { color:var(--muted); font-style:italic; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Sort the downloaded images</h1>
+  <p class="hint">For each picture, choose who or what it is (leave extras on “skip”). Then copy the command at the bottom, paste it into Terminal from inside this folder, and press Return. Delete this file and <code>images/_unsorted</code> afterwards.</p>
+  <div id="sections"></div>
+</div>
+<div class="bar"><div class="wrap">
+  <span class="status" id="status"></span>
+  <textarea id="out" readonly></textarea>
+  <button id="copy">Copy command</button>
+</div></div>
+<script>
+var GROUPS = [
+  { dir: "people", dest: "images/people", title: "People", options: [
+    ["tomer","Tomer Ullman"],["lonnie","Ilona (Lonnie) Bass"],["peng","Peng Qian"],["junyi","Junyi Chu"],["jenn","Jennifer Hu"],
+    ["felix","Felix Sosa"],["eric","Eric Bigelow"],["yichen","Yichen Li"],["yingqiao","Yingqiao Wang"],["sonia","Sonia Murthy"],
+    ["whitney","Whitney Villagran"],["yuki","Yuki (CCO)"],["zihan","Zihan Wang (alum)"],["sophie","Sophie Bridgers (alum)"],
+    ["mariel","Mariel Goddu (alum)"],["john","John Muchovej (alum)"],["chloe","Chloë Geller (alum)"],["jiayi","Jiayi Wang (alum)"],["kiera","Kiera Parece (alum)"],
+    ["@photos/2023-06-lab-photo","→ Lab photo: June 2023 group photo"]
+  ]},
+  { dir: "join-us", dest: "images/join", title: "Join Us projects", options: [
+    ["object-representation","Object Representation"],["play","Play"],["creative-problem-solving","Creative Problem-Solving"]
+  ]},
+  { dir: "lab-photos", dest: "images/photos", title: "Lab Photos", options: [
+    ["2023-11-escape-room","Nov 2023: Red Fox Escape"],["2023-tomer-throne","Tomer on the throne"],["2023-06-lab-photo","June 2023: group photo"],
+    ["2023-05-retreat","May 2023: lab retreat"],["2023-05-cco-summit","May 2023: CCO Summit"],["2023-02-bowling","Feb 2023: bowling"]
+  ]}
+];
+var pad = function (n) { return (n < 10 ? "0" : "") + n; };
+var root = document.getElementById("sections");
+
+GROUPS.forEach(function (g) {
+  var sec = document.createElement("section");
+  sec.innerHTML = "<h2>" + g.title + "</h2><p class='hint'>From images/_unsorted/" + g.dir + "/</p><div class='grid'></div><p class='empty' hidden>No unsorted images here — nothing to do.</p>";
+  root.appendChild(sec);
+  var grid = sec.querySelector(".grid"), found = 0, pending = 30;
+  for (var i = 1; i <= 30; i++) (function (i) {
+    var file = pad(i) + ".jpg", path = "images/_unsorted/" + g.dir + "/" + file;
+    var card = document.createElement("div"); card.className = "card"; card.hidden = true;
+    grid.appendChild(card);                       // placeholder keeps numeric order
+    var img = new Image();
+    img.onload = function () {
+      found++;
+      card.innerHTML = "<img src='" + path + "' alt=''><div class='num'>" + file + "</div>" +
+        "<select data-src='" + path + "' data-dest='" + g.dest + "'><option value=''>— skip —</option>" +
+        g.options.map(function (o) { return "<option value='" + o[0] + "'>" + o[1] + "</option>"; }).join("") + "</select>";
+      card.hidden = false;
+      card.querySelector("select").addEventListener("change", update);
+      done();
+    };
+    img.onerror = function () { card.remove(); done(); };
+    img.src = path;
+    function done() { if (--pending === 0 && !found) sec.querySelector(".empty").hidden = false; }
+  })(i);
+});
+
+function update() {
+  var sels = Array.prototype.slice.call(document.querySelectorAll("select")), seen = {}, lines = [], dups = 0;
+  sels.forEach(function (s) {
+    var v = s.value, card = s.parentNode;
+    card.classList.remove("set", "dup");
+    if (!v) return;
+    var dest = v.charAt(0) === "@" ? "images/" + v.slice(1) + ".jpg" : s.dataset.dest + "/" + v + ".jpg";
+    if (seen[dest]) { dups++; card.classList.add("dup"); seen[dest].classList.add("dup"); }
+    else { card.classList.add("set"); }
+    seen[dest] = card;
+    lines.push('cp "' + s.dataset.src + '" "' + dest + '"');
+  });
+  document.getElementById("out").value = lines.length ? lines.join(" && \\\n") + " && echo 'Done: " + lines.length + " images sorted.'" : "";
+  document.getElementById("status").textContent = lines.length + " picked" + (dups ? " · " + dups + " name(s) used twice (red border)" : "");
+}
+document.getElementById("copy").addEventListener("click", function () {
+  var t = document.getElementById("out"); t.select();
+  var ok = false; try { ok = document.execCommand("copy"); } catch (e) {}
+  if (navigator.clipboard) navigator.clipboard.writeText(t.value).then(function () { ok = true; }, function () {});
+  this.textContent = "Copied!"; var b = this; setTimeout(function () { b.textContent = "Copy command"; }, 1500);
+});
+update();
+</script>
+</body>
+</html>

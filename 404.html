@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found · CoCoDev</title>
+<meta name="description" content="The Computation, Cognition, and Development Lab at Harvard.">
+<meta property="og:title" content="Page not found · CoCoDev">
+<meta property="og:description" content="The Computation, Cognition, and Development Lab at Harvard.">
+<link rel="icon" href="/images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,600;0,700;1,400&family=Fraunces:opsz,wght,SOFT,WONK@9..144,100..900,0..100,0..1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="/"><img src="/images/logo.png" alt="" onerror="this.remove()"><span>CoCoDev</span></a>
+    <nav class="site-nav" aria-label="Main">
+<a href="/">About</a>
+<a href="/people/">People</a>
+<a href="/publications/">Publications</a>
+<a href="/join-us/">Join Us</a>
+<a href="/lab-photos/">Lab Photos</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<h1 class="page-title">Page not found</h1><p class="prose">Sorry, that page doesn't exist. Try the <a href="/">home page</a>.</p>
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div><strong>Contact</strong><br><a href="mailto:cocodev@g.harvard.edu">cocodev@g.harvard.edu</a></div>
+    <div><strong>Join CoCoDev</strong><br>See the <a href="/join-us/">Join Us</a> page for open positions.</div>
+    <div><strong>Follow us</strong><br><a href="https://bsky.app/profile/tomerullman.bsky.social">Bluesky</a></div>
+  </div>
+  <div class="wrap fine">Computation, Cognition, and Development Lab · Harvard University</div>
+</footer>
+<script>
+/* Local preview only: when opened from disk (file://), point folder links at their index.html.
+   Has no effect on the live site. */
+if (location.protocol === 'file:') {
+  document.querySelectorAll('a[href]').forEach(function (a) {
+    var h = a.getAttribute('href');
+    if (/^[a-z]+:/i.test(h) || h.charAt(0) === '#') return;
+    var parts = h.split('#');
+    if (parts[0] === '' ) return;
+    if (/\/$/.test(parts[0]) || parts[0] === '.' || parts[0] === '..') {
+      parts[0] = parts[0].replace(/\/?$/, '/') + 'index.html';
+      a.setAttribute('href', parts.join('#'));
+    }
+  });
+}
+</script>
+</body>
+</html>

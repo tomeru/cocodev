@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab Photos · CoCoDev</title>
+<meta name="description" content="Photos from CoCoDev lab events.">
+<meta property="og:title" content="Lab Photos · CoCoDev">
+<meta property="og:description" content="Photos from CoCoDev lab events.">
+<link rel="icon" href="../images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,600;0,700;1,400&family=Fraunces:opsz,wght,SOFT,WONK@9..144,100..900,0..100,0..1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href=".././"><img src="../images/logo.png" alt="" onerror="this.remove()"><span>CoCoDev</span></a>
+    <nav class="site-nav" aria-label="Main">
+<a href=".././">About</a>
+<a href="../people/">People</a>
+<a href="../publications/">Publications</a>
+<a href="../join-us/">Join Us</a>
+<a href="../lab-photos/" aria-current="page">Lab Photos</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<h1 class="page-title">Lab Photos</h1>
+<div class="gallery">
+<figure class="photo"><img src="../images/photos/2023-11-escape-room.jpg" alt="Nov 2023: Successful heist at Red Fox Escape!" loading="lazy" onerror="this.parentNode.classList.add('missing')"><figcaption>Nov 2023: Successful heist at Red Fox Escape!</figcaption></figure>
+<figure class="photo"><img src="../images/photos/2023-tomer-throne.jpg" alt="We put Tomer on the throne!" loading="lazy" onerror="this.parentNode.classList.add('missing')"><figcaption>We put Tomer on the throne!</figcaption></figure>
+<figure class="photo"><img src="../images/photos/2023-06-lab-photo.jpg" alt="June 2023: CoCoDev lab photo in front of the Northwest Lab Building" loading="lazy" onerror="this.parentNode.classList.add('missing')"><figcaption>June 2023: CoCoDev lab photo in front of the Northwest Lab Building</figcaption></figure>
+<figure class="photo"><img src="../images/photos/2023-05-retreat.jpg" alt="May 2023: Lab retreat in nature!" loading="lazy" onerror="this.parentNode.classList.add('missing')"><figcaption>May 2023: Lab retreat in nature!</figcaption></figure>
+<figure class="photo"><img src="../images/photos/2023-05-cco-summit.jpg" alt="May 2023: CCO (Chief Cuddles Officer) Summit during the lab retreat" loading="lazy" onerror="this.parentNode.classList.add('missing')"><figcaption>May 2023: CCO (Chief Cuddles Officer) Summit during the lab retreat</figcaption></figure>
+<figure class="photo"><img src="../images/photos/2023-02-bowling.jpg" alt="February 2023: Bowling at Sacco" loading="lazy" onerror="this.parentNode.classList.add('missing')"><figcaption>February 2023: Bowling at Sacco</figcaption></figure>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div><strong>Contact</strong><br><a href="mailto:cocodev@g.harvard.edu">cocodev@g.harvard.edu</a></div>
+    <div><strong>Join CoCoDev</strong><br>See the <a href="../join-us/">Join Us</a> page for open positions.</div>
+    <div><strong>Follow us</strong><br><a href="https://bsky.app/profile/tomerullman.bsky.social">Bluesky</a></div>
+  </div>
+  <div class="wrap fine">Computation, Cognition, and Development Lab · Harvard University</div>
+</footer>
+<script>
+/* Local preview only: when opened from disk (file://), point folder links at their index.html.
+   Has no effect on the live site. */
+if (location.protocol === 'file:') {
+  document.querySelectorAll('a[href]').forEach(function (a) {
+    var h = a.getAttribute('href');
+    if (/^[a-z]+:/i.test(h) || h.charAt(0) === '#') return;
+    var parts = h.split('#');
+    if (parts[0] === '' ) return;
+    if (/\/$/.test(parts[0]) || parts[0] === '.' || parts[0] === '..') {
+      parts[0] = parts[0].replace(/\/?$/, '/') + 'index.html';
+      a.setAttribute('href', parts.join('#'));
+    }
+  });
+}
+</script>
+</body>
+</html>
