@@ -142,8 +142,8 @@ main { padding-top: 2.5rem; padding-bottom: 4.5rem; }
   .avatar { width: 112px; height: 112px; }
 }
 
-.alumni { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1.1rem; }
-.alum { display: flex; gap: 1rem; align-items: flex-start; padding: 1.1rem; background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--c); border-radius: var(--radius); }
+.alumni { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1.1rem; }
+.alum { display: flex; gap: 1rem; align-items: center; padding: 1.1rem; background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--c); border-radius: var(--radius); }
 .alum .avatar { width: 64px; height: 64px; border-radius: 14px; box-shadow: 5px 5px 0 var(--c); }
 .alum .avatar::before { font-size: 1.25rem; }
 .alum p { margin: .3rem 0 0; font-size: .94rem; }
@@ -200,3 +200,5 @@ main { padding-top: 2.5rem; padding-bottom: 4.5rem; }
 @media (max-width: 700px) {
   .site-header, .pub-tools { position: static; }
 }
+
+.alum h3 { margin: 0; font-size: 1.05rem; }
